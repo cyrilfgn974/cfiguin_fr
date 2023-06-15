@@ -4,11 +4,23 @@ import HeaderLink from "./HeaderLink.astro";
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Cyril Figuin. All rights reserved.
-    <nav>
-        <HeaderLink href="/terms-of-use">Terms of use</HeaderLink>
-    </nav>
-	<img src="/greenweb.webp" alt="This website is hosted Green - checked by thegreenwebfoundation.org">
+	<p>
+		&copy; {today.getFullYear()} Cyril Figuin. <a 
+			href="http://creativecommons.org/licenses/by/4.0/">CC BY-SA 4.0</a
+		>
+	</p>
+	<nav>
+		<HeaderLink href="/terms-of-use">Terms of use</HeaderLink>
+	</nav>
+	<!-- <img
+		src="/greenweb.webp"
+		alt="This website is hosted Green - checked by thegreenwebfoundation.org"
+	/> -->
+	<p>
+		Built with 🚀Astro. <a href="https://github.com/cyrilfgn974/cfiguin_fr"
+			>See the source code.</a
+		>
+	</p>
 </footer>
 <style>
 	footer {
