@@ -1,0 +1,18 @@
+---
+const today = new Date();
+import HeaderLink from "./HeaderLink.astro";
+---
+
+<footer>
+	&copy; {today.getFullYear()} Cyril Figuin. All rights reserved.
+    <nav>
+        <HeaderLink href="/terms-of-use">Terms of use</HeaderLink>
+    </nav>
+	<img src="https://api.thegreenwebfoundation.org/greencheckimage/cfiguin.fr?nocache=true" alt="This website is hosted Green - checked by thegreenwebfoundation.org">
+</footer>
+<style>
+	footer {
+		padding: 25px;
+		text-align: center;
+	}
+</style>

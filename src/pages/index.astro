@@ -1,5 +1,9 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
+import Header from '../components/Header.astro';
+import Footer from "../components/Footer.astro";
+
+// TS globals
 import {SITE_TITLE, SITE_DESCRIPTION} from '../utils/consts'
 ---
 <!DOCTYPE html>
@@ -8,6 +12,23 @@ import {SITE_TITLE, SITE_DESCRIPTION} from '../utils/consts'
 	<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 </head>
 <body>
-	
+	<Header title={SITE_TITLE} />
+	<main>
+		<h1>Hey! I'm Cyril</h1>
+		<p>
+			Native of Reunion Island 🇷🇪, software engineer graduated from Toulouse INP-ENSEEIHT (speciality Computer Science and Telecommunications), 
+			with a passion for computer science 
+			and the audiovisual world with my investment in the video association of ENSEEIHT: TVn7, 
+			since 2021 I've been working for the CineKlee company, 
+			where I help develop software for professionals in the fiction shooting preparation professions. 
+			I'm currently specializing in the FileMaker tool, 
+			but also in all the possibilities for using FileMaker data in Web applications, 
+			mobile applications or other third-party tools, thanks to the multiple possibilities offered by APIs.
+		</p>
+		<h2>
+			More informations about me coming soon !
+		</h2>
+	</main>
+	<Footer />
 </body>
 </html>
