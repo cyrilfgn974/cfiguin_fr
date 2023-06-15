@@ -1,34 +1,110 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import Header from '../components/Header.astro';
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
 
 // TS globals
-import {SITE_TITLE, SITE_DESCRIPTION} from '../utils/consts'
+import { SITE_TITLE, SITE_DESCRIPTION } from "../utils/consts";
+import { getCollection } from "astro:content";
+
+const educations = (await getCollection("education")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-</head>
-<body>
-	<Header title={SITE_TITLE} />
-	<main>
-		<h1>Hey! I'm Cyril</h1>
-		<p>
-			Native of Reunion Island 🇷🇪, software engineer graduated from Toulouse INP-ENSEEIHT (speciality Computer Science and Telecommunications), 
-			with a passion for computer science 
-			and the audiovisual world with my investment in the video association of ENSEEIHT: TVn7, 
-			since 2021 I've been working for the CineKlee company, 
-			where I help develop software for professionals in the fiction shooting preparation professions. 
-			I'm currently specializing in the FileMaker tool, 
-			but also in all the possibilities for using FileMaker data in Web applications, 
-			mobile applications or other third-party tools, thanks to the multiple possibilities offered by APIs.
-		</p>
-		<h2>
-			More informations about me coming soon !
-		</h2>
-	</main>
-	<Footer />
-</body>
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header title={SITE_TITLE} />
+		<main>
+			<h1>Hey! I'm Cyril</h1>
+			<p>
+				Native of Reunion Island 🇷🇪, software engineer graduated from
+				Toulouse INP-ENSEEIHT (speciality Computer Science and
+				Telecommunications), with a passion for computer science and the
+				audiovisual world with my investment in the video association of
+				ENSEEIHT: TVn7, since 2021 I've been working for the CineKlee
+				company, where I help develop software for professionals in the
+				fiction shooting preparation professions. I'm currently
+				specializing in the FileMaker tool, but also in all the
+				possibilities for using FileMaker data in Web applications,
+				mobile applications or other third-party tools, thanks to the
+				multiple possibilities offered by APIs.
+			</p>
+			<div class="education">
+				<h2>My education</h2>
+				{
+					educations.map((education) => (
+						<article class="edu-elt">
+							<div class="left-edu">
+								<p>
+									<FormattedDate
+										date={education.data.updatedDate}
+									/>{" "}
+									<br />{" "}
+									<FormattedDate
+										date={education.data.pubDate}
+									/>{" "}
+								</p>
+							</div>
+							<div class="right-edu">
+								<h3>{education.data.title}</h3>
+								<p>{education.data.school}</p>
+								<div class="list-competence">
+									<ul>
+										{education.data.competences.map(
+											(competence: string) => (
+												<li>{competence}</li>
+											)
+										)}
+									</ul>
+								</div>
+							</div>
+						</article>
+					))
+				}
+			</div>
+
+			<h2>More informations about me coming soon !</h2>
+		</main>
+		<Footer />
+		<style>
+			.education {
+				line-height: 1.2;
+			}
+			.edu-elt {
+				display: grid;
+				grid-template-columns: 15% 85%;
+			}
+			.left-edu {
+				display: flex;
+			
+				justify-content: center;
+			}
+			
+			.list-competence li {
+				list-style: none;
+				display: inline-block;
+				margin-right: 10px;
+				border-radius: 3px;
+				padding: 0.2em 0.5em 0.3em;
+				border-radius: 2px;
+				font-weight: 600;
+				margin: 0.25em 0.1em;
+				font-size: 0.8em;
+				border-radius: 4px;
+				color: #fff;
+				background: #522D86;
+			}
+			.list-competence ul {
+				padding-left: 0;
+				list-style: none;
+				line-height: 1.2;
+			}
+		</style>
+	</body>
 </html>
